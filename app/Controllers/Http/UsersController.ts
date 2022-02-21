@@ -33,4 +33,14 @@ export default class UsersController {
       return response.status(500).send(error)
     }
   }
+
+  public async logout({ auth, response }: HttpContextContract) {
+    try {
+      const logout = await this.userService.logout(auth)
+      return response.send(logout)
+    } catch (error) {
+      console.log(error)
+      return response.status(500).send(error)
+    }
+  }
 }

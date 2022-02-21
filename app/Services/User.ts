@@ -33,4 +33,16 @@ export default class UserService {
       throw new Error(error)
     }
   }
+
+  public async logout(auth) {
+    try {
+      await auth.use('api').revoke()
+      return {
+        revoked: true
+      }
+    } catch (error) {
+      console.error(error)
+      throw new Error(error)
+    }
+  }
 }
